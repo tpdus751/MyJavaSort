@@ -1,14 +1,16 @@
 package mysort.sort;
 
-public class MergeSort extends Sort {
+import java.util.Arrays;
+
+public class MergeSort<T extends Comparable> extends Sort<T> {
 
 	@Override
-	public void sort(int[] dataList) {
+	public void sort(T[] dataList) {
 		setData(dataList);
 		mergeSort(sortedData, 0, sortedData.length-1);
 	}
 	
-	void mergeSort(int[] dataList, int start, int end) {
+	void mergeSort(T[] dataList, int start, int end) {
 		if (start >= end) return;
 		
 		int mid = (start + end) / 2;
@@ -17,11 +19,12 @@ public class MergeSort extends Sort {
 		merge(dataList, start, mid, end);
 	}
 	
-	void merge(int[] dataList, int start, int mid, int end) {
-		int[] tempList = new int[end-start + 1];
+	void merge(T[] dataList, int start, int mid, int end) {
+//		T[] tempList = new T[end-start + 1];
+		T[] tempList = Arrays.copyOfRange(dataList, 0, end - start + 1);
 		int i = start, j = mid + 1, k = 0;
 		while (i <= mid && j <= end) {
-			if (dataList[i] <= dataList[j])
+			if (dataList[i].compareTo(dataList[j]) <= 0)
 				tempList[k++] = dataList[i++];
 			else
 				tempList[k++] = dataList[j++];

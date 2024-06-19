@@ -2,21 +2,21 @@ package mysort.sort;
 
 import java.util.Arrays;
 
-public abstract class Sort {
-	int[] orgData;
-	int[] sortedData;
+public abstract class Sort<T> {
+	T[] orgData;
+	T[] sortedData;
 	
-	public abstract void sort(int[] dataList);
+	public abstract void sort(T[] dataList);
 	
-	void swap(int[] dataList, int a, int b) {
+	void swap(T[] dataList, int a, int b) {
 		if (a == b) return;
-		int temp;
+		T temp;
 		temp = dataList[a];
 		dataList[a] = dataList[b];
 		dataList[b] = temp;
 	}
 	
-	public void setData(int[] dataList) {
+	public void setData(T[] dataList) {
 		this.orgData = dataList;
 		this.sortedData = dataList.clone();
 	}

@@ -1,14 +1,14 @@
 package mysort.sort;
 
-public class QuickSort extends Sort {
+public class QuickSort <T extends Comparable> extends Sort<T> {
 
 	@Override
-	public void sort(int[] dataList) {
+	public void sort(T[] dataList) {
 		setData(dataList);
 		quickSort(sortedData, 0, sortedData.length-1);
 	}
 	
-	void quickSort(int[] dataList, int start, int end) {
+	void quickSort(T[] dataList, int start, int end) {
 		if (start >= end) return;
 		int p = partition(dataList, start, end);
 		
@@ -17,11 +17,11 @@ public class QuickSort extends Sort {
 	}
 	
 	
-	int partition(int[] dataList, int start, int end) {
-		int pivot = dataList[end];
+	int partition(T[] dataList, int start, int end) {
+		T pivot = dataList[end];
 		int leftEnd = start - 1;	// left
 		for (int i = start; i <= end - 1; i++) {
-			if (dataList[i] < pivot) {
+			if (dataList[i].compareTo(pivot) == -1) {
 				swap(dataList, ++leftEnd, i);
 			}
 		}
